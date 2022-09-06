@@ -1,18 +1,7 @@
 const { expect } = require("chai");
 const hre = require('hardhat');
-NAME = "ContractsHaterToken"
-SYMBOL = "CHT"
-DECIMALS = 18
 
-function parseUnits(value) {
-  return ethers.utils.parseUnits(value.toString(), DECIMALS);
-}
-
-function fmtUnits(value) {
-  return ethers.utils.formatUnits(value._hex, DECIMALS);
-}
-
-var Factory, factory, Validator, validator;
+var Factory, Factory1, Factory2, factory, factory1, factory2, Validator, validator;
 beforeEach(async () => {
   [owner, alice, bob] = await ethers.getSigners();
   Factory = await ethers.getContractFactory("SimpleToken");
@@ -32,8 +21,8 @@ beforeEach(async () => {
   await validator.deployed()
 })
 
-describe("ContractsHaterToken", function () {
-  it("test transfers with whitelist", async function () {
+describe("Validator", function () {
+  it("Validate contracts", async function () {
     await factory.transferOwnership(validator.address);
     await factory1.transferOwnership(validator.address);
     await factory2.transferOwnership(validator.address);
